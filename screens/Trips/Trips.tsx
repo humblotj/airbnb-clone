@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 import Button from '../../components/ui/Button';
 import Hr from '../../components/ui/Hr';
@@ -8,15 +8,18 @@ import DemiBold from '../../components/ui/DemiBold';
 import AppText from '../../components/ui/AppText';
 
 const Trips: React.FC<{}> = () => (
-  <SafeAreaView style={styles.container}>
-    <Title>Trips</Title>
-    <Hr style={styles.hr} />
-    <DemiBold style={styles.subTitle}>No trips yet</DemiBold>
-    <AppText style={styles.tip}>
-      When you&apos;re ready to plan your next trip, we&apos;re here to help
-    </AppText>
-    <Button style={styles.button}>Log In</Button>
-  </SafeAreaView>
+  <>
+    <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+    <SafeAreaView style={styles.container}>
+      <Title>Trips</Title>
+      <Hr style={styles.hr} />
+      <DemiBold style={styles.subTitle}>No trips yet</DemiBold>
+      <AppText style={styles.tip}>
+        When you&apos;re ready to plan your next trip, we&apos;re here to help
+      </AppText>
+      <Button style={styles.button}>Log In</Button>
+    </SafeAreaView>
+  </>
 );
 
 const styles = StyleSheet.create({

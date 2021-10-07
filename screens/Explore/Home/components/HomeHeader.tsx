@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Animated, View, ViewStyle, StyleProp } from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  View,
+  ViewStyle,
+  StyleProp,
+  StatusBar,
+} from 'react-native';
 
 import RipplePressable from '../../../../components/ui/RipplePressable';
 import ExploreIcon from '../../../../assets/icons/explore.svg';
@@ -15,61 +22,66 @@ const SearchButton: React.FC<{
     <DemiBold style={styles.searchButtonText}>{children}</DemiBold>
   </RipplePressable>
 );
+
 interface Props {
   scrollY: Animated.Value;
 }
 
 const HomeHeader: React.FC<Props> = ({ scrollY }) => {
-  const [isTop, setIsTop] = useState(true);
+  const [isTop, setIsTop] = useState(0);
 
   useEffect(() => {
     scrollY.addListener(({ value }) => {
-      if (isTop !== value < 10) {
-        setIsTop(value < 10);
-      }
+      setIsTop(Math.min(50, value));
     });
-  }, [scrollY, isTop]);
+  }, [scrollY]);
 
   return (
-    <Animated.View
-      style={[
-        styles.header,
-        {
-          transform: [
-            {
-              translateY: scrollY.interpolate({
-                inputRange: [0, 40],
-                outputRange: [0, -40],
-                extrapolate: 'clamp',
-              }),
-            },
-          ],
-        },
-      ]}
-    >
-      <RipplePressable style={styles.covidLink}>
-        <Bold style={styles.covidContent}>
-          Get the latest on our COVID-19 response
-        </Bold>
-      </RipplePressable>
-      <View style={styles.headerContent}>
-        <Animated.View
-          style={[
-            styles.background,
-            {
-              opacity: scrollY.interpolate({
-                inputRange: [40, 50],
-                outputRange: [0, 1],
-                extrapolate: 'clamp',
-              }),
-            },
-          ]}
-        />
-        <SearchButton style={!isTop && styles.darkButton}>
-          Where are you going?
-        </SearchButton>
-      </View>
-    </Animated.View>
+    <>
+      <StatusBar
+        backgroundColor={isTop <= 45 ? '#222' : '#fff'}
+        barStyle={isTop <= 45 ? 'light-content' : 'dark-content'}
+      />
+      <Animated.View
+        style={[
+          styles.header,
+          {
+            transform: [
+              {
+                translateY: scrollY.interpolate({
+                  inputRange: [0, 40],
+                  outputRange: [0, -40],
+                  extrapolate: 'clamp',
+                }),
+              },
+            ],
+          },
+        ]}
+      >
+        <RipplePressable style={styles.covidLink}>
+          <Bold style={styles.covidContent}>
+            Get the latest on our COVID-19 response
+          </Bold>
+        </RipplePressable>
+        <View style={styles.headerContent}>
+          <Animated.View
+            style={[
+              styles.background,
+              {
+                opacity: scrollY.interpolate({
+                  inputRange: [40, 50],
+                  outputRange: [0, 1],
+                  extrapolate: 'clamp',
+                }),
+              },
+            ]}
+          />
+          <SearchButton style={isTop >= 50 && styles.darkButton}>
+            Where are you going?
+          </SearchButton>
+        </View>
+      </Animated.View>
+    </>
   );
 };
 

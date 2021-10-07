@@ -53,11 +53,31 @@ const BottomTabNavigator: React.FC<{}> = () => (
       ),
     })}
   >
-    <Tab.Screen name="Explore" component={ExploreStackNavigator} />
-    <Tab.Screen name="Wishlists" component={Wishlists} />
-    <Tab.Screen name="Trips" component={Trips} />
-    <Tab.Screen name="Inbox" component={Inbox} />
-    <Tab.Screen name="Log In" component={Profile} />
+    <Tab.Screen
+      name="Explore"
+      component={ExploreStackNavigator}
+      options={{ unmountOnBlur: true }}
+    />
+    <Tab.Screen
+      name="Wishlists"
+      component={Wishlists}
+      options={{ unmountOnBlur: true }}
+    />
+    <Tab.Screen
+      name="Trips"
+      component={Trips}
+      options={{ unmountOnBlur: true }}
+    />
+    <Tab.Screen
+      name="Inbox"
+      component={Inbox}
+      options={{ unmountOnBlur: true }}
+    />
+    <Tab.Screen
+      name="Log In"
+      component={Profile}
+      options={{ unmountOnBlur: true }}
+    />
   </Tab.Navigator>
 );
 

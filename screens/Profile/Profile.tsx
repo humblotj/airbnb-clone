@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import Button from '../../components/ui/Button';
@@ -14,45 +14,48 @@ import DemiBold from '../../components/ui/DemiBold';
 import AppText from '../../components/ui/AppText';
 
 const Profile: React.FC<{}> = () => (
-  <SafeAreaView style={styles.container}>
-    <View style={styles.headerContainer}>
-      <Title style={styles.title}>Your profile</Title>
-      <AppText>Log in to start planning your next trip.</AppText>
-      <Button style={styles.button} width100>
-        Log In
-      </Button>
-      <RipplePressable style={styles.noAccount}>
-        <AppText>
-          <AppText>Don&apos;t have an account? </AppText>
-          <DemiBold style={styles.underline}>Sign up</DemiBold>
-        </AppText>
+  <>
+    <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Title style={styles.title}>Your profile</Title>
+        <AppText>Log in to start planning your next trip.</AppText>
+        <Button style={styles.button} width100>
+          Log In
+        </Button>
+        <RipplePressable style={styles.noAccount}>
+          <AppText>
+            <AppText>Don&apos;t have an account? </AppText>
+            <DemiBold style={styles.underline}>Sign up</DemiBold>
+          </AppText>
+        </RipplePressable>
+      </View>
+      <Hr style={styles.hr} />
+      <RipplePressable style={styles.navItem}>
+        <AppText style={styles.navLabel}>Settings</AppText>
+        <SettingsIcon style={styles.icon} />
       </RipplePressable>
-    </View>
-    <Hr style={styles.hr} />
-    <RipplePressable style={styles.navItem}>
-      <AppText style={styles.navLabel}>Settings</AppText>
-      <SettingsIcon style={styles.icon} />
-    </RipplePressable>
-    <Hr style={styles.hr} />
-    <RipplePressable style={styles.navItem}>
-      <AppText style={styles.navLabel}>Learn about hosting</AppText>
-      <HostingIcon style={styles.icon} />
-    </RipplePressable>
-    <Hr style={styles.hr} />
-    <RipplePressable style={styles.navItem}>
-      <AppText style={styles.navLabel}>Get help</AppText>
-      <HelpIcon style={styles.icon} />
-    </RipplePressable>
-    <Hr style={styles.hr} />
-    <RipplePressable style={styles.navItem}>
-      <AppText style={styles.navLabel}>Terms of Service</AppText>
-      <TermsIcon style={styles.icon} />
-    </RipplePressable>
-    <Hr style={styles.hr} />
-    <AppText
-      style={styles.versionText}
-    >{`Version ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`}</AppText>
-  </SafeAreaView>
+      <Hr style={styles.hr} />
+      <RipplePressable style={styles.navItem}>
+        <AppText style={styles.navLabel}>Learn about hosting</AppText>
+        <HostingIcon style={styles.icon} />
+      </RipplePressable>
+      <Hr style={styles.hr} />
+      <RipplePressable style={styles.navItem}>
+        <AppText style={styles.navLabel}>Get help</AppText>
+        <HelpIcon style={styles.icon} />
+      </RipplePressable>
+      <Hr style={styles.hr} />
+      <RipplePressable style={styles.navItem}>
+        <AppText style={styles.navLabel}>Terms of Service</AppText>
+        <TermsIcon style={styles.icon} />
+      </RipplePressable>
+      <Hr style={styles.hr} />
+      <AppText
+        style={styles.versionText}
+      >{`Version ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`}</AppText>
+    </SafeAreaView>
+  </>
 );
 
 const styles = StyleSheet.create({
