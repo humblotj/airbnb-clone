@@ -41,6 +41,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
     'no-shadow': 0,
+    "@typescript-eslint/no-shadow": 0,
     'no-plusplus': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,

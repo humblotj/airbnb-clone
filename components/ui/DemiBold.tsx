@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
 import AppText from './AppText';
 
 interface Props {
-  style?: any,
-  children: React.ReactNode
+  style?: StyleProp<TextStyle>;
+  children: React.ReactNode;
 }
 
-const DemiBold = ({ style, children }: Props) => (
-  <AppText style={[styles.strong, style]}>
-    {children}
-  </AppText>
+const DemiBold: React.FC<Props> = ({ style, children }) => (
+  <AppText style={[styles.strong, style]}>{children}</AppText>
 );
 
 const styles = StyleSheet.create({

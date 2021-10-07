@@ -1,17 +1,14 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
 interface Props {
-    style?: any
+  style?: StyleProp<ViewStyle>;
 }
 
-const Hr = ({ style }: Props) => (
-  <View style={[styles.hr, style]} />
-);
+const Hr: React.FC<Props> = ({ style }) => <View style={[styles.hr, style]} />;
 
 const styles = StyleSheet.create({
   hr: {
-    // width: '100%',
     height: 1,
     backgroundColor: 'rgb(228, 228, 228)',
   },

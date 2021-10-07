@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
 import Bold from './Bold';
 
 interface Props {
-  style?: any,
-  children: React.ReactNode
+  style?: StyleProp<TextStyle>;
+  children: React.ReactNode;
 }
 
-const Title = ({ style, children }: Props) => (
-  <Bold style={[styles.title, style]}>
-    {children}
-  </Bold>
+const Title: React.FC<Props> = ({ style, children }: Props) => (
+  <Bold style={[styles.title, style]}>{children}</Bold>
 );
 
 const styles = StyleSheet.create({
