@@ -3,7 +3,6 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 
 import AppNavigator from './navigators/AppNavigator';
-import { StatusBar } from 'react-native';
 
 const Theme = {
   ...DefaultTheme,
