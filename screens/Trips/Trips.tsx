@@ -7,7 +7,7 @@ import Title from '../../components/ui/Title';
 import DemiBold from '../../components/ui/DemiBold';
 import AppText from '../../components/ui/AppText';
 
-const Trips = () => (
+const Trips: React.FC<{}> = () => (
   <SafeAreaView style={styles.container}>
     <Title>Trips</Title>
     <Hr style={styles.hr} />

@@ -8,7 +8,7 @@ import StayInformed from './components/StayInformed';
 import TryHosting from './components/TryHosting';
 import WhereToGo from './components/WhereToGo';
 
-const Home = () => (
+const Home: React.FC<{}> = () => (
   <ScrollView>
     <WhereToGo />
     <ExploreNearby />

@@ -7,9 +7,11 @@ import ChipButton from '../../../../components/ui/ChipButton';
 
 const vw = Dimensions.get('window').width;
 
-const WhereToGo = () => (
+const WhereToGo: React.FC<{}> = () => (
   <ImageBackground style={styles.background} source={whereToGoBackground}>
-    <DemiBold style={styles.description}>Not sure where to go? Perfect.</DemiBold>
+    <DemiBold style={styles.description}>
+      Not sure where to go? Perfect.
+    </DemiBold>
     <ChipButton style={styles.button}>I&apos;m flexible</ChipButton>
   </ImageBackground>
 );

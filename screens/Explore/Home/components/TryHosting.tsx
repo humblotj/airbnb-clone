@@ -1,16 +1,18 @@
 import React from 'react';
-import {
-  View, ImageBackground, StyleSheet,
-} from 'react-native';
+import { View, ImageBackground, StyleSheet } from 'react-native';
 
 import DemiBold from '../../../../components/ui/DemiBold';
 import tryHosting from '../../../../assets/tryhosting.webp';
 import RipplePressable from '../../../../components/ui/RipplePressable';
 import AppText from '../../../../components/ui/AppText';
 
-const TryHosting = () => (
+const TryHosting: React.FC<{}> = () => (
   <RipplePressable style={styles.container}>
-    <ImageBackground source={tryHosting} resizeMode="cover" style={styles.background}>
+    <ImageBackground
+      source={tryHosting}
+      resizeMode="cover"
+      style={styles.background}
+    >
       <View style={styles.content}>
         <DemiBold style={styles.title}>Try Hosting</DemiBold>
         <AppText style={styles.description}>

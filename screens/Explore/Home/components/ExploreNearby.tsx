@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import {
-  View, StyleSheet, FlatList, Image,
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  ImageSourcePropType,
 } from 'react-native';
-import Bold from '../../../../components/ui/Bold';
-import DemiBold from '../../../../components/ui/DemiBold';
-import RipplePressable from '../../../../components/ui/RipplePressable';
 
 import seoul from '../../../../assets/explore-nearby/seoul.webp';
 import busan from '../../../../assets/explore-nearby/busan.jpeg';
@@ -12,30 +13,36 @@ import yangyangGun from '../../../../assets/explore-nearby/yangyang-gu.webp';
 import sokchoSi from '../../../../assets/explore-nearby/sokcho-si.webp';
 import daegu from '../../../../assets/explore-nearby/daegu.webp';
 import wangjuGun from '../../../../assets/explore-nearby/wangju-gun.webp';
+
+import Bold from '../../../../components/ui/Bold';
+import DemiBold from '../../../../components/ui/DemiBold';
+import RipplePressable from '../../../../components/ui/RipplePressable';
 import AppText from '../../../../components/ui/AppText';
 
-const places = [[{ city: 'Seoul', time: '15-minute', picture: seoul },
-  { city: 'Busan', time: '15-minute', picture: busan }],
-[{ city: 'Yangyang-gun', time: '2.5-hour', picture: yangyangGun },
-  { city: 'Sokcho-si', time: '2.5-hour', picture: sokchoSi }],
-[{ city: 'Daegu', time: '4-hour', picture: daegu },
-  { city: 'Wangju-gun', time: '3-hour', picture: wangjuGun }],
+const places = [
+  [
+    { city: 'Seoul', time: '15-minute', picture: seoul },
+    { city: 'Busan', time: '15-minute', picture: busan },
+  ],
+  [
+    { city: 'Yangyang-gun', time: '2.5-hour', picture: yangyangGun },
+    { city: 'Sokcho-si', time: '2.5-hour', picture: sokchoSi },
+  ],
+  [
+    { city: 'Daegu', time: '4-hour', picture: daegu },
+    { city: 'Wangju-gun', time: '3-hour', picture: wangjuGun },
+  ],
 ];
 
 interface Props {
-  city: string,
-  time: string,
-  picture: any,
+  city: string;
+  time: string;
+  picture: ImageSourcePropType;
 }
 
-const Place = ({ city, time, picture }: Props) => (
+const Place: React.FC<Props> = ({ city, time, picture }) => (
   <RipplePressable style={styles.place}>
-    <Image
-      style={styles.picture}
-      source={picture}
-      width={72}
-      height={72}
-    />
+    <Image style={styles.picture} source={picture} width={72} height={72} />
     <View>
       <DemiBold style={styles.city}>{city}</DemiBold>
       <AppText style={styles.time}>{`${time} drive`}</AppText>
@@ -43,14 +50,20 @@ const Place = ({ city, time, picture }: Props) => (
   </RipplePressable>
 );
 
-const ExploreNearby = () => {
-  const keyExtractor = useCallback((item: Props[]) => item[0].city + item[1].city, []);
-  const renderItem = useCallback(({ item }: {item: Props[]}) => (
-    <View>
-      <Place {...item[0]} />
-      <Place {...item[1]} />
-    </View>
-  ), []);
+const ExploreNearby: React.FC<{}> = () => {
+  const keyExtractor = useCallback(
+    (item: Props[]) => item[0].city + item[1].city,
+    [],
+  );
+  const renderItem = useCallback(
+    ({ item }: { item: Props[] }) => (
+      <View>
+        <Place {...item[0]} />
+        <Place {...item[1]} />
+      </View>
+    ),
+    [],
+  );
 
   return (
     <View>

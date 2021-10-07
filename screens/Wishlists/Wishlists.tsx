@@ -1,20 +1,18 @@
 import React from 'react';
-import {
-  SafeAreaView, StyleSheet, View,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import AppText from '../../components/ui/AppText';
 
 import RipplePressable from '../../components/ui/RipplePressable';
 import Title from '../../components/ui/Title';
 
-const Wishlists = () => (
+const Wishlists: React.FC<{}> = () => (
   <SafeAreaView style={styles.container}>
     <View style={styles.headerContainer}>
       <Title>Wishlists</Title>
       <AppText style={styles.tip}>
-        When you find something you like, tap on the heart to save it.
-        If you&apos;re planning a trip with others,
-        invite them so they can save and vote on their favourites.
+        When you find something you like, tap on the heart to save it. If
+        you&apos;re planning a trip with others, invite them so they can save
+        and vote on their favourites.
       </AppText>
     </View>
     <RipplePressable>

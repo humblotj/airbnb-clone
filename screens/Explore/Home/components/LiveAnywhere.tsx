@@ -1,41 +1,46 @@
 import React, { useCallback } from 'react';
 import {
-  View, StyleSheet, FlatList, Image,
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  ImageSourcePropType,
 } from 'react-native';
-import Bold from '../../../../components/ui/Bold';
-import DemiBold from '../../../../components/ui/DemiBold';
-import RipplePressable from '../../../../components/ui/RipplePressable';
 
 import outdoor from '../../../../assets/live-anywhere/outdoor.webp';
 import unique from '../../../../assets/live-anywhere/unique.webp';
 import homes from '../../../../assets/live-anywhere/homes.webp';
 import pets from '../../../../assets/live-anywhere/pets.webp';
 
-const places = [{ name: 'Outdoor gataways', picture: outdoor },
+import Bold from '../../../../components/ui/Bold';
+import DemiBold from '../../../../components/ui/DemiBold';
+import RipplePressable from '../../../../components/ui/RipplePressable';
+
+const places = [
+  { name: 'Outdoor gataways', picture: outdoor },
   { name: 'Unique stays', picture: unique },
   { name: 'Entire homes', picture: homes },
-  { name: 'Pets allowed', picture: pets }];
+  { name: 'Pets allowed', picture: pets },
+];
 
 interface Props {
-  name: string,
-  picture: any,
+  name: string;
+  picture: ImageSourcePropType;
 }
 
-const Place = ({ name, picture }: Props) => (
+const Place: React.FC<Props> = ({ name, picture }) => (
   <RipplePressable style={styles.place}>
-    <Image
-      style={styles.picture}
-      source={picture}
-      width={272}
-      height={272}
-    />
+    <Image style={styles.picture} source={picture} width={272} height={272} />
     <DemiBold style={styles.placeName}>{name}</DemiBold>
   </RipplePressable>
 );
 
-const LiveAnywhere = () => {
+const LiveAnywhere: React.FC<{}> = () => {
   const keyExtractor = useCallback((item: Props) => item.name, []);
-  const renderItem = useCallback(({ item }: {item: Props}) => (<Place {...item} />), []);
+  const renderItem = useCallback(
+    ({ item }: { item: Props }) => <Place {...item} />,
+    [],
+  );
 
   return (
     <View>

@@ -7,11 +7,15 @@ declare module '*.svg' {
 }
 
 declare module '*.webp' {
-  const value: any;
+  import { ImageSourcePropType } from 'react-native';
+
+  const value: ImageSourcePropType;
   export = value;
 }
 
 declare module '*.jpeg' {
-  const value: any;
+  import { ImageSourcePropType } from 'react-native';
+
+  const value: ImageSourcePropType;
   export = value;
 }

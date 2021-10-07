@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView, StyleSheet, View,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import Button from '../../components/ui/Button';
@@ -15,12 +13,14 @@ import RipplePressable from '../../components/ui/RipplePressable';
 import DemiBold from '../../components/ui/DemiBold';
 import AppText from '../../components/ui/AppText';
 
-const Profile = () => (
+const Profile: React.FC<{}> = () => (
   <SafeAreaView style={styles.container}>
     <View style={styles.headerContainer}>
       <Title style={styles.title}>Your profile</Title>
       <AppText>Log in to start planning your next trip.</AppText>
-      <Button style={styles.button} width100>Log In</Button>
+      <Button style={styles.button} width100>
+        Log In
+      </Button>
       <RipplePressable style={styles.noAccount}>
         <AppText>
           <AppText>Don&apos;t have an account? </AppText>
@@ -49,7 +49,9 @@ const Profile = () => (
       <TermsIcon style={styles.icon} />
     </RipplePressable>
     <Hr style={styles.hr} />
-    <AppText style={styles.versionText}>{`Version ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`}</AppText>
+    <AppText
+      style={styles.versionText}
+    >{`Version ${DeviceInfo.getVersion()} (${DeviceInfo.getBuildNumber()})`}</AppText>
   </SafeAreaView>
 );
 

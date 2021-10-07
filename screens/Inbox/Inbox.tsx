@@ -7,7 +7,7 @@ import Title from '../../components/ui/Title';
 import DemiBold from '../../components/ui/DemiBold';
 import AppText from '../../components/ui/AppText';
 
-const Inbox = () => (
+const Inbox: React.FC<{}> = () => (
   <SafeAreaView style={styles.container}>
     <Title>Inbox</Title>
     <Hr style={styles.hr} />
