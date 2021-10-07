@@ -19,6 +19,7 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
   overrides: [
     {
@@ -32,8 +33,8 @@ module.exports = {
     'prettier',
     'import',
     'react',
-    '@typescript-eslint',
     'react-hooks',
+    '@typescript-eslint',
   ],
   rules: {
     'no-unused-vars': 1,
@@ -66,4 +67,5 @@ module.exports = {
     ],
     '@typescript-eslint/no-unsafe-assignment': 1,
   },
+  ignorePatterns: ["/*.*"],
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
-import AppText from '../../components/ui/AppText';
 
+import AppText from '../../components/ui/AppText';
 import RipplePressable from '../../components/ui/RipplePressable';
 import Title from '../../components/ui/Title';
 
