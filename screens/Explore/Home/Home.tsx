@@ -16,15 +16,18 @@ const Home: React.FC<{}> = () => {
     <>
       <HomeHeader scrollY={scrollY} />
       <ScrollView
-        onScroll={Animated.event([
-          {
-            nativeEvent: {
-              contentOffset: {
-                y: scrollY,
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {
+                  y: scrollY,
+                },
               },
             },
-          },
-        ])}
+          ],
+          { useNativeDriver: false },
+        )}
         scrollEventThrottle={1}
       >
         <WhereToGo />
