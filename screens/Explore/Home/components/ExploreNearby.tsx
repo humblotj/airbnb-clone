@@ -2,10 +2,11 @@ import React, { useCallback } from 'react';
 import {
   View,
   StyleSheet,
-  FlatList,
   Image,
   ImageSourcePropType,
+  Dimensions,
 } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 import seoul from '../../../../assets/explore-nearby/seoul.webp';
 import busan from '../../../../assets/explore-nearby/busan.jpeg';
@@ -18,6 +19,8 @@ import Bold from '../../../../components/ui/Bold';
 import DemiBold from '../../../../components/ui/DemiBold';
 import RipplePressable from '../../../../components/ui/RipplePressable';
 import AppText from '../../../../components/ui/AppText';
+
+const { width: viewportWidth } = Dimensions.get('window');
 
 const places = [
   [
@@ -51,10 +54,6 @@ const Place: React.FC<Props> = ({ city, time, picture }) => (
 );
 
 const ExploreNearby: React.FC<{}> = () => {
-  const keyExtractor = useCallback(
-    (item: Props[]) => item[0].city + item[1].city,
-    [],
-  );
   const renderItem = useCallback(
     ({ item }: { item: Props[] }) => (
       <View>
@@ -68,13 +67,16 @@ const ExploreNearby: React.FC<{}> = () => {
   return (
     <View>
       <Bold style={styles.title}>Explore nearby</Bold>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        contentContainerStyle={styles.contentContainerStyle}
+      <Carousel
+        contentContainerCustomStyle={styles.contentContainerStyle}
         data={places}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
+        sliderWidth={viewportWidth}
+        itemWidth={272}
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
+        useExperimentalSnap
+        vertical={false}
       />
     </View>
   );

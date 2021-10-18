@@ -2,10 +2,11 @@ import React, { useCallback } from 'react';
 import {
   View,
   StyleSheet,
-  FlatList,
   Image,
   ImageSourcePropType,
+  Dimensions,
 } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 import outdoor from '../../../../assets/live-anywhere/outdoor.webp';
 import unique from '../../../../assets/live-anywhere/unique.webp';
@@ -15,6 +16,8 @@ import pets from '../../../../assets/live-anywhere/pets.webp';
 import Bold from '../../../../components/ui/Bold';
 import DemiBold from '../../../../components/ui/DemiBold';
 import RipplePressable from '../../../../components/ui/RipplePressable';
+
+const { width: viewportWidth } = Dimensions.get('window');
 
 const places = [
   { name: 'Outdoor gataways', picture: outdoor },
@@ -36,7 +39,6 @@ const Place: React.FC<Props> = ({ name, picture }) => (
 );
 
 const LiveAnywhere: React.FC<{}> = () => {
-  const keyExtractor = useCallback((item: Props) => item.name, []);
   const renderItem = useCallback(
     ({ item }: { item: Props }) => <Place {...item} />,
     [],
@@ -45,13 +47,16 @@ const LiveAnywhere: React.FC<{}> = () => {
   return (
     <View>
       <Bold style={styles.title}>Live anywhere</Bold>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        contentContainerStyle={styles.contentContainerStyle}
+      <Carousel
+        contentContainerCustomStyle={styles.contentContainerStyle}
         data={places}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
+        sliderWidth={viewportWidth}
+        itemWidth={284}
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
+        useExperimentalSnap
+        vertical={false}
       />
     </View>
   );

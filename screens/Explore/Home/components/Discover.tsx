@@ -2,10 +2,11 @@ import React, { useCallback } from 'react';
 import {
   View,
   StyleSheet,
-  FlatList,
   Image,
   ImageSourcePropType,
+  Dimensions,
 } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 import experiencesPicture from '../../../../assets/discover/experiences.webp';
 import onlineExperiencesPicture from '../../../../assets/discover/online-experiences.webp';
@@ -15,6 +16,8 @@ import Bold from '../../../../components/ui/Bold';
 import DemiBold from '../../../../components/ui/DemiBold';
 import RipplePressable from '../../../../components/ui/RipplePressable';
 import AppText from '../../../../components/ui/AppText';
+
+const { width: viewportWidth } = Dimensions.get('window');
 
 const things = [
   {
@@ -51,22 +54,26 @@ const Thing: React.FC<Props> = ({ name, description, picture }) => (
 );
 
 const Discover: React.FC<{}> = () => {
-  const keyExtractor = useCallback((item: Props) => item.name, []);
   const renderItem = useCallback(
-    ({ item }: { item: Props }) => <Thing {...item} />,
+    ({ item }: { item: Props; dataIndex: number; index: number }) => (
+      <Thing {...item} />
+    ),
     [],
   );
 
   return (
     <View>
       <Bold style={styles.title}>Discover things to do</Bold>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}
-        horizontal
+      <Carousel
+        contentContainerCustomStyle={styles.contentContainerStyle}
         data={things}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
+        sliderWidth={viewportWidth}
+        itemWidth={284}
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
+        useExperimentalSnap
+        vertical={false}
       />
     </View>
   );

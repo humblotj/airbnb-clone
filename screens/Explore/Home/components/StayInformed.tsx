@@ -1,11 +1,14 @@
 import React, { Fragment, useCallback } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 import Hr from '../../../../components/ui/Hr';
 import RipplePressable from '../../../../components/ui/RipplePressable';
 import Bold from '../../../../components/ui/Bold';
 import DemiBold from '../../../../components/ui/DemiBold';
 import AppText from '../../../../components/ui/AppText';
+
+const { width: viewportWidth } = Dimensions.get('window');
 
 const lists = [
   {
@@ -91,7 +94,6 @@ const StayInformedList: React.FC<Props> = ({ title, tabs }) => (
 );
 
 const StayInformed: React.FC<{}> = () => {
-  const keyExtractor = useCallback((item: Props) => item.title, []);
   const renderItem = useCallback(
     ({ item }: { item: Props }) => <StayInformedList {...item} />,
     [],
@@ -100,13 +102,16 @@ const StayInformed: React.FC<{}> = () => {
   return (
     <View style={styles.container}>
       <Bold style={styles.title}>Stay informed</Bold>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        contentContainerStyle={styles.contentContainerStyle}
+      <Carousel
+        contentContainerCustomStyle={styles.contentContainerStyle}
         data={lists}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
+        sliderWidth={viewportWidth}
+        itemWidth={300}
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
+        useExperimentalSnap
+        vertical={false}
       />
     </View>
   );
@@ -127,7 +132,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
   },
   list: {
-    minWidth: 300,
+    width: 300,
   },
   listTitle: {
     marginBottom: 12,
